@@ -5,3 +5,5 @@ example/web/
 example/macos/
 example/linux/
 example/analysis_options.yaml
+.DS_Store
+.DS_Store

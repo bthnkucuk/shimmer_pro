@@ -21,6 +21,7 @@ class ShimmerPro extends StatefulWidget {
   Widget? child;
   Alignment? alignment;
   ShimmerProLight? light;
+  Color scaffoldBackgroundColor;
 
   ShimmerPro.sized({
     super.key,
@@ -28,7 +29,8 @@ class ShimmerPro extends StatefulWidget {
     this.duration = const Duration(seconds: 1),
     this.borderRadius = 10,
     this.alignment = Alignment.center,
-    this.light = ShimmerProLight.lighter,
+    this.light = ShimmerProLight.darker,
+    required this.scaffoldBackgroundColor,
     required this.height,
     required this.width,
   }) {
@@ -43,7 +45,8 @@ class ShimmerPro extends StatefulWidget {
       this.textSize = 14,
       this.borderRadius = 10,
       this.alignment = Alignment.center,
-      this.light = ShimmerProLight.lighter,
+      this.light = ShimmerProLight.darker,
+      required this.scaffoldBackgroundColor,
       this.width}) {
     isText = true;
   }
@@ -54,7 +57,8 @@ class ShimmerPro extends StatefulWidget {
       this.duration = const Duration(seconds: 1),
       this.borderRadius = 10,
       this.alignment = Alignment.center,
-      this.light = ShimmerProLight.lighter,
+      this.light = ShimmerProLight.darker,
+      required this.scaffoldBackgroundColor,
       this.width,
       this.height,
       required this.child}) {
@@ -75,8 +79,8 @@ class _ShimmerProState extends State<ShimmerPro> {
   @override
   void initState() {
     _brightness = widget.light == ShimmerProLight.lighter
-        ? Brightness.light
-        : Brightness.dark;
+        ? Brightness.dark
+        : Brightness.light;
 
     _colorInt = _brightness == Brightness.dark
         ? 5
@@ -84,10 +88,9 @@ class _ShimmerProState extends State<ShimmerPro> {
             ? -50
             : (_brightness == Brightness.dark ? 5 : -50));
     // _brightness == Brightness.light ? widget.depth = widget.depth + 10 : null;
-    print(widget.depth);
 
     onReady();
-    log(name: "BatuShimmer", '\x1B[32mInitialized\x1B[0m');
+    // log(name: "BatuShimmer", '\x1B[32mInitialized\x1B[0m');
 
     super.initState();
   }
@@ -120,24 +123,22 @@ class _ShimmerProState extends State<ShimmerPro> {
     if (_timer.isActive) {
       _timer.cancel();
     }
-    log(name: "BatuShimmer", '\x1B[32mDeleted\x1B[0m');
+    //  log(name: "BatuShimmer", '\x1B[32mDeleted\x1B[0m');
   }
 
   @override
   Widget build(BuildContext context) {
-    final Color bgColor = Theme.of(context).scaffoldBackgroundColor;
-
     int textWDepth = _brightness == Brightness.dark ? 10 : -10;
     final Color textAndGeneratedWColor = Color.fromARGB(
-        bgColor.alpha,
-        bgColor.red + textWDepth,
-        bgColor.green + textWDepth,
-        bgColor.blue + textWDepth);
+        widget.scaffoldBackgroundColor.alpha,
+        widget.scaffoldBackgroundColor.red + textWDepth,
+        widget.scaffoldBackgroundColor.green + textWDepth,
+        widget.scaffoldBackgroundColor.blue + textWDepth);
     final Color textWColorTextAndSize = Color.fromARGB(
-        bgColor.alpha,
-        bgColor.red + _colorInt + 10,
-        bgColor.green + _colorInt + 10,
-        bgColor.blue + _colorInt + 10);
+        widget.scaffoldBackgroundColor.alpha,
+        widget.scaffoldBackgroundColor.red + _colorInt + 10,
+        widget.scaffoldBackgroundColor.green + _colorInt + 10,
+        widget.scaffoldBackgroundColor.blue + _colorInt + 10);
 
     if (widget.isGenerated) {
       return Align(
@@ -204,7 +205,7 @@ class _ShimmerProState extends State<ShimmerPro> {
                       height: widget.textSize,
                       width: (widget.maxLine! - 1) == index
                           ? (widget.maxLine != 1
-                              ? (widget.width ?? context.size!.width) / 3
+                              ? (widget.width ?? double.maxFinite) / 3
                               : null)
                           : null,
                     ))
