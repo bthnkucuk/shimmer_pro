@@ -1,7 +1,8 @@
 name: shimmer_pro
 description: Shimmer effect with easy usage.
 version: 0.0.4
-homepage:
+email: bthnkucuk@gmail.com
+homepage: https://github.com/bthnkucuk/shimmer_pro
 
 environment:
   sdk: '>=2.18.4 <3.0.0'
