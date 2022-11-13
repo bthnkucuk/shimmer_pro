@@ -6,9 +6,12 @@ import 'package:flutter/material.dart';
 
 enum ShimmerProLight { lighter, darker }
 
+///
+///Use only [ShimmerPro.sized], [ShimmerPro.text] or [ShimmerPro.generated] not use [ShimmerPro].
+// ignore: must_be_immutable
 class ShimmerPro extends StatefulWidget {
   final Duration duration;
-  int depth;
+  final int depth;
   int? maxLine;
   double? textSize;
   double? borderRadius;
@@ -22,6 +25,13 @@ class ShimmerPro extends StatefulWidget {
   ShimmerProLight? light;
   Color scaffoldBackgroundColor;
 
+  ///[ShimmerPro.sized] must use sized widgets.
+  ///With using [width] and [height] ;[ShimmerPro.sized] generate sized shimmer.
+  ///[duration] animation duration.
+  ///[borderRadius] sized widget border radius.
+  ///[alignment] sized vidget alignment. Defoult [Alignment.center].
+  ///[light] shimmer is lighter color or darker color.
+  ///[scaffoldBackgroundColor] must be geven. [ShimmerPro.sized] generate from this color.
   ShimmerPro.sized({
     super.key,
     this.depth = 20,
@@ -36,6 +46,15 @@ class ShimmerPro extends StatefulWidget {
     isSized = true;
   }
 
+  ///[ShimmerPro.text] must use text widgets.
+  ///You can delegate [width] ;[ShimmerPro.text] generate text shimmer.
+  ///[duration] animation duration.
+  ///[borderRadius] sized widget border radius.
+  ///[alignment] sized vidget alignment. Defoult [Alignment.center].
+  ///[light] shimmer is lighter color or darker color.
+  ///[scaffoldBackgroundColor] must be geven. [ShimmerPro.text] generate from this color.
+  ///[maxLine] is defoult 3. [ShimmerPro.text] will be generated this count.
+  ///[textSize] is [ShimmerPro.text]'s text size.Defoult 14.
   ShimmerPro.text(
       {super.key,
       this.depth = 20,
@@ -50,6 +69,14 @@ class ShimmerPro extends StatefulWidget {
     isText = true;
   }
 
+  ///[ShimmerPro.generated] must use children widgets.
+  ///You can delegate [width] ;[ShimmerPro.text] generate text shimmer.
+  ///[duration] animation duration.
+  ///[borderRadius] sized widget border radius.
+  ///[alignment] sized vidget alignment. Defoult [Alignment.center].
+  ///[light] shimmer is lighter color or darker color.
+  ///[scaffoldBackgroundColor] must be geven. [ShimmerPro.text] generate from this color.
+  ///[child] must be [Column] or [Row] for best seen.
   ShimmerPro.generated(
       {super.key,
       this.depth = 20,
@@ -163,10 +190,8 @@ class _ShimmerProState extends State<ShimmerPro> {
             color: textWColorTextAndSize,
           ),
           duration: widget.duration,
-          //TODO -20 değeri uygulamanın paddingi olacak
           margin: const EdgeInsets.all(10),
           height: widget.height,
-
           width: widget.width,
         ),
       );
@@ -180,13 +205,11 @@ class _ShimmerProState extends State<ShimmerPro> {
           ),
           duration: widget.duration,
           height: (widget.maxLine! * (widget.textSize! + 10) + 10),
-          //TODO -20 değeri uygulamanın paddingi olacak
           width: widget.width ?? double.maxFinite,
           margin: const EdgeInsets.only(
             left: 10,
             right: 10,
           ),
-
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
