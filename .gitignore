@@ -1,0 +1,7 @@
+
+.dart_tool/
+example/windows/
+example/web/
+example/macos/
+example/linux/
+example/analysis_options.yaml

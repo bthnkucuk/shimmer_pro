@@ -181,7 +181,7 @@ class _ShimmerProState extends State<ShimmerPro> {
           duration: widget.duration,
           height: (widget.maxLine! * (widget.textSize! + 10) + 10),
           //TODO -20 değeri uygulamanın paddingi olacak
-          width: widget.width ?? context.size!.width - 20,
+          width: widget.width ?? double.maxFinite,
           margin: const EdgeInsets.only(
             left: 10,
             right: 10,
