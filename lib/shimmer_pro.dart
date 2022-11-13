@@ -1,7 +1,6 @@
 library shimmer_pro;
 
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
