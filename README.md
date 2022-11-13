@@ -4,7 +4,8 @@
 Shimmer effect with easy usage.
 
 <p>
-
+    <img src="https://github.com/bthnkucuk/shimmer_pro/blob/main/screenshots/dark.gif?raw=true/">
+    <img src="https://github.com/bthnkucuk/shimmer_pro/blob/main/screenshots/light.gif?raw=true"/>
 </p>
 
 ## How to use
